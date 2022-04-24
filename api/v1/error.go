@@ -10,7 +10,7 @@ type ErrOffsetOutOfRange struct {
 	Offset uint64
 }
 
-func (e ErrOffsetOutOfRange) GRPCStatus() *status.Status [
+func (e ErrOffsetOutOfRange) GRPCStatus() *status.Status {
 	st := status.New(
 		404,
 		fmt.Sprintf("offset out of range: %d", e.Offset),
@@ -20,7 +20,7 @@ func (e ErrOffsetOutOfRange) GRPCStatus() *status.Status [
 		e.Offset,
 	)
 	d := &errdetails.LocalizedMessage{
-		Locale: "en-US",
+		Locale:  "en-US",
 		Message: msg,
 	}
 	std, err := st.WithDetails(d)
